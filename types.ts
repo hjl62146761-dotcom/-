@@ -3,49 +3,59 @@ export enum ReportStatus {
   GREEN = 'Green',
   YELLOW = 'Yellow',
   RED = 'Red',
+  MIXED = 'Mixed',
   UNKNOWN = 'Unknown'
 }
 
-export interface Metric {
-  name: string;
-  value: number | string;
-  unit: string;
-  currency?: string;
-}
+export type UserRole = 'EXECUTIVE' | 'MANAGER' | 'STAFF';
 
 export interface ReportItem {
-  title: string;
-  plan: { text: string; metrics: Metric[] };
-  actual: { text: string; metrics: Metric[] };
-  delta: { text: string; metrics: Metric[] };
-  status: ReportStatus;
-  risks: string[];
-  next_actions: string[];
-  due_date: string | null;
-  owner: string | null;
-  tags: string[];
-  evidence_quotes: string[];
-}
-
-export interface ReportSection {
+  issue_id?: string; // [ORG]-[CATEGORY]-[KEYWORD]-[YYYY]-[SEQ]
+  section?: string; // New: Specific to PDF page/section structure
   org_unit: string;
-  category: 'KPI' | 'Project' | 'Finance' | 'Risk' | 'Operation' | 'Other';
-  items: ReportItem[];
+  category: 'KPI' | 'PROJECT' | 'FINANCE' | 'RISK' | 'OPERATION' | 'OTHER';
+  item: string;
+  plan: string;
+  actual: string;
+  gap: string;
+  status: ReportStatus;
+  next_action?: string;
+  owner?: string;
+  is_new?: boolean;
 }
 
 export interface ReportMeta {
-  company: string;
-  week_label: string;
+  company?: string;
+  week: string;
   report_date: string;
-  source_file: string;
-  language: string;
+  source: string;
+}
+
+export interface ReportSummary {
+  overall_status: ReportStatus;
+  key_messages: string[];
+  top_risks: string[];
+  next_week_priorities: string[];
 }
 
 export interface StructuredReport {
-  id: string; // Internal local ID
+  id: string;
   report_meta: ReportMeta;
-  sections: ReportSection[];
+  summary: ReportSummary;
+  details: ReportItem[];
   createdAt: number;
 }
 
-export type AppView = 'EXTRACT' | 'SUMMARY' | 'TRACKING' | 'CHAT' | 'HISTORY';
+export interface KpiTimeSeries {
+  kpi_name: string;
+  org_unit: string;
+  unit: string;
+  data: {
+    week: string;
+    plan: number | null;
+    actual: number | null;
+    status: ReportStatus;
+  }[];
+}
+
+export type AppView = 'EXTRACT' | 'SUMMARY' | 'TRACKING' | 'KPI_DASHBOARD' | 'CHAT' | 'HISTORY';

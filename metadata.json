@@ -1,5 +1,5 @@
 {
-  "name": "Copy of ReportFlow AI",
-  "description": "A comprehensive corporate weekly work report analysis platform. Extracts structured data from raw text, generates executive summaries, tracks progress across weeks, and provides a searchable knowledge base.",
+  "name": "Smart 주간업무 AJ AI",
+  "description": "Enterprise-grade weekly report intelligence. Features automated PPT/PDF parsing, unique Issue ID generation, KPI time-series visualization, and role-based access control.",
   "requestFramePermissions": []
 }

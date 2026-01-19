@@ -19,7 +19,7 @@ const ChatView: React.FC<ChatViewProps> = ({ reports }) => {
     {
       id: '1',
       role: 'assistant',
-      content: '안녕하세요! 과거 주간보고서 데이터 기반 지식베이스 챗봇입니다. 특정 주차의 실적이나, 반복되는 이슈에 대해 질문해 주세요. (예: "지난달 A본부의 주요 리스크는 무엇이었어?")'
+      content: '안녕하세요! Smart 주간업무 AJ AI 기반 지식베이스 챗봇입니다. 특정 주차의 실적이나, 반복되는 이슈에 대해 질문해 주세요. (예: "지난달 A본부의 주요 리스크는 무엇이었어?")'
     }
   ]);
   const [input, setInput] = useState('');
@@ -46,7 +46,7 @@ const ChatView: React.FC<ChatViewProps> = ({ reports }) => {
       setMessages(prev => [...prev, botMsg]);
     } catch (e) {
       console.error(e);
-      const errorMsg: Message = { id: (Date.now() + 1).toString(), role: 'assistant', content: '죄송합니다. 답변 생성 중 오류가 발생했습니다.' };
+      const errorMsg: Message = { id: (Date.now() + 1).toString(), role: 'assistant', content: '죄송합니다. Smart 주간업무 AJ AI가 답변을 생성하는 중 오류가 발생했습니다.' };
       setMessages(prev => [...prev, errorMsg]);
     } finally {
       setLoading(false);
@@ -61,7 +61,7 @@ const ChatView: React.FC<ChatViewProps> = ({ reports }) => {
             <Bot size={18} />
           </div>
           <div>
-            <h3 className="font-bold text-sm">리포트 인텔리전스</h3>
+            <h3 className="font-bold text-sm">Smart 주간업무 AJ AI</h3>
             <p className="text-[10px] text-blue-300 font-medium tracking-wider uppercase">Active Search in {reports.length} Reports</p>
           </div>
         </div>
@@ -95,7 +95,7 @@ const ChatView: React.FC<ChatViewProps> = ({ reports }) => {
               </div>
               <div className="bg-white p-4 rounded-2xl shadow-sm flex items-center gap-2">
                 <Loader2 className="animate-spin text-blue-600" size={16} />
-                <span className="text-sm text-gray-500">데이터 근거를 찾는 중...</span>
+                <span className="text-sm text-gray-500">Smart 주간업무 AJ AI가 근거를 찾는 중...</span>
               </div>
             </div>
           </div>
